@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import "survey-core/modern.min.css";
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
@@ -37,9 +37,7 @@ function App() {
   survey.focusFirstQuestionAutomatic = false;
 
   const submitResults = useCallback((sender) => {
-    submitSurveyResult({
-      "ssss": "sssssssss"
-    }).then((res) => {
+    submitSurveyResult(sender.data).then((res) => {
       console.log("submit survey results: ", res);
     }).catch(function (error) {
         console.log("ERROR: ", error);
