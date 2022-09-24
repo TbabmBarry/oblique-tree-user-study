@@ -1,6 +1,6 @@
 import { createProxyMiddleware } from "http-proxy-middleware";
 
-module.exports = (req, res) => {
+export default function (req, res) {
     let target = "";
 
     // proxy target url
@@ -12,4 +12,4 @@ module.exports = (req, res) => {
         target,
         changeOrigin: true,
     })(req, res)
-} 
+};
