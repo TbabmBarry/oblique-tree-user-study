@@ -37,7 +37,9 @@ function App() {
   survey.focusFirstQuestionAutomatic = false;
 
   const submitResults = useCallback((sender) => {
-    submitSurveyResult(sender.data).then((res) => {
+    submitSurveyResult({
+      "ssss": "sssssssss"
+    }).then((res) => {
       console.log("submit survey results: ", res);
     }).catch(function (error) {
         console.log("ERROR: ", error);
