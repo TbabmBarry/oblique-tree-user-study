@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react'
-
-import "survey-core/modern.min.css"
-import { StylesManager, Model } from 'survey-core'
-import { Survey } from 'survey-react-ui'
+import { useCallback, useState } from 'react';
+import "survey-core/modern.min.css";
+import { StylesManager, Model } from 'survey-core';
+import { Survey } from 'survey-react-ui';
+import { submitSurveyResult } from './api/surveyResults';
 
 StylesManager.applyTheme('modern');
 
@@ -23,27 +23,11 @@ const surveyJson = {
     }]
 }, {
     elements: [{
-        name: "what-would-make-you-more-satisfied",
-        title: "What can we do to make your experience more satisfying?",
-        type: "comment",
-    }, {
         name: "nps-score",
         title: "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
         type: "rating",
         rateMin: 0,
         rateMax: 10
-    }],
-}, {
-    elements: [{
-        name: "how-can-we-improve",
-        title: "In your opinion, how could we improve our product?",
-        type: "comment"
-    }],
-}, {
-    elements: [{
-        name: "disappointing-experience",
-        title: "Please let us know why you had such a disappointing experience with our product",
-        type: "comment"
     }],
 }]
 };
@@ -52,9 +36,19 @@ function App() {
   const survey = new Model(surveyJson);
   survey.focusFirstQuestionAutomatic = false;
 
-  const alertResults = useCallback((sender) => {
-    const results = JSON.stringify(sender.data);
-    alert(results);
+  const [surveyResults, setSurveyResults] = useState(null);
+  const [isSurveyCompleted, setIsSurveyCompleted] = useState(false);
+
+  const displayResults = useCallback((sender) => {
+    let req = JSON.stringify(sender.data, null, 4);
+    console.log("req: ", req);
+    setSurveyResults(req);
+    setIsSurveyCompleted(true);
+    submitSurveyResult(sender.data).then((res) => {
+      console.log("submit survey results: ", res);
+    }).catch(function (error) {
+        console.log("ERROR: ", error);
+    });
   }, []);
 
   let timerId = null;
@@ -64,20 +58,21 @@ function App() {
     if (!page) return;
     let valueName = `page-no-${survey.pages.indexOf(page)}-time-spent`;
     let seconds = survey.getValue(valueName);
-    if (seconds == null) seconds = 0;
-    else seconds++;
+    if (seconds == null) {
+      seconds = 0;
+    } else {
+      seconds++;
+    }
     survey.setValue(valueName, seconds);
   };
 
   survey.onCurrentPageChanged.add((sender) => {
-    console.log(sender.data);
     timerCallback();
   })
 
   survey.onComplete.add((sender) => {
-    document.getElementById("timeInfo").style.display = "none";
     clearInterval(timerId);
-    alertResults(sender);
+    displayResults(sender);
   });
 
   timerCallback();
@@ -85,7 +80,19 @@ function App() {
     timerCallback();
   }, 1000);
 
-  return <Survey model={survey} />
+  return (
+    <>
+      <Survey model={survey} />
+      {isSurveyCompleted && (
+        <>
+          <p>Result JSON:</p>
+          <code style={{ whiteSpace: 'pre' }}>
+            { surveyResults }
+          </code>
+        </>
+      )}
+    </>
+  )
 }
 
 export default App
