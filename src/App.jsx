@@ -57,16 +57,7 @@ function App() {
     alert(results);
   }, []);
 
-  const timeEl = document.getElementById('timeEl');
   let timerId = null;
-  const renderTime = (time) => {
-    if (!timeEl) return;
-    let hours = Math.floor(time / 3600);
-    let minutes = Math.floor((time - (hours * 3600)) / 60);
-    let seconds = Math.floor(time % 60);
-    let timeText = `${hours}:${minutes}:${seconds}`;
-    timeEl.innerText = timeText;
-  }
 
   const timerCallback = () => {
     let page = survey.currentPage;
@@ -76,7 +67,6 @@ function App() {
     if (seconds == null) seconds = 0;
     else seconds++;
     survey.setValue(valueName, seconds);
-    renderTime(seconds);
   };
 
   survey.onCurrentPageChanged.add((sender) => {
@@ -95,14 +85,7 @@ function App() {
     timerCallback();
   }, 1000);
 
-  return <div>
-    <div id="timeInfo">
-      <p>
-        <span>The time spent on this question: </span><span id="timeEl"></span>
-      </p>
-    </div>
-    <Survey model={survey} />
-  </div>
+  return <Survey model={survey} />
 }
 
 export default App
