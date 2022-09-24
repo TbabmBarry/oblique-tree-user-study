@@ -36,14 +36,7 @@ function App() {
   const survey = new Model(surveyJson);
   survey.focusFirstQuestionAutomatic = false;
 
-  const [surveyResults, setSurveyResults] = useState(null);
-  const [isSurveyCompleted, setIsSurveyCompleted] = useState(false);
-
-  const displayResults = useCallback((sender) => {
-    let req = JSON.stringify(sender.data, null, 4);
-    console.log("req: ", req);
-    setSurveyResults(req);
-    setIsSurveyCompleted(true);
+  const submitResults = useCallback((sender) => {
     submitSurveyResult(sender.data).then((res) => {
       console.log("submit survey results: ", res);
     }).catch(function (error) {
@@ -72,7 +65,7 @@ function App() {
 
   survey.onComplete.add((sender) => {
     clearInterval(timerId);
-    displayResults(sender);
+    submitResults(sender);
   });
 
   timerCallback();
@@ -83,14 +76,6 @@ function App() {
   return (
     <>
       <Survey model={survey} />
-      {isSurveyCompleted && (
-        <>
-          <p>Result JSON:</p>
-          <code style={{ whiteSpace: 'pre' }}>
-            { surveyResults }
-          </code>
-        </>
-      )}
     </>
   )
 }
