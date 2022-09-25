@@ -7,7 +7,13 @@ import { submitSurveyResult } from './api/surveyResults';
 StylesManager.applyTheme('modern');
 
 const surveyJson = {
-  pages: [{
+  pages: [
+    {
+      elements: [{
+          type: "html",
+          html: "<h2>In this survey, we will ask you a couple questions about...</h2>"
+      }]
+  },{
     elements: [{
         name: "satisfaction-score",
         title: "How would you describe your experience with our product?",
