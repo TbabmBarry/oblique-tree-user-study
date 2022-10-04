@@ -3,6 +3,7 @@ import "survey-core/modern.min.css";
 import { StylesManager, Model } from 'survey-core';
 import { Survey } from 'survey-react-ui';
 import { submitSurveyResult } from './api/surveyResults';
+import showdown from 'showdown';
 
 StylesManager.applyTheme('modern');
 
@@ -13,7 +14,16 @@ const surveyJson = {
           type: "html",
           html: "<h2>In this survey, we will ask you a couple questions about...</h2>"
       }]
-  },{
+  },
+  {
+    elements: [{
+        type: "text",
+        name: "user-id",
+        title: "What is your user id?",
+        isRequired: true
+    }]
+  },
+  {
     elements: [{
         name: "satisfaction-score",
         title: "How would you describe your experience with our product?",
@@ -27,20 +37,131 @@ const surveyJson = {
         ],
         isRequired: true
     }]
-}, {
-    elements: [{
-        name: "nps-score",
-        title: "On a scale of zero to ten, how likely are you to recommend our product to a friend or colleague?",
-        type: "rating",
-        rateMin: 0,
-        rateMax: 10
-    }],
-}]
+},
+{
+  elements: [
+    {
+      type: "html",
+      html: "<h1>Post-experiment Questionnaire</h1>"
+    },
+    {
+    type: "rating",
+    name: "visualization-interpretability",
+    title: "Do you find this visualization useful for understanding the behavior of an oblique decision tree?",
+    minRateDescription: "Not useful",
+    maxRateDescription: "Very useful",
+    isRequired: true
+  },
+  {
+    type: "rating",
+    name: "visualization-usability",
+    title: "Do you think this visualization easy to use?",
+    minRateDescription: "Very hard",
+    maxRateDescription: "Very easy",
+    isRequired: true
+  },
+  {
+    type: "matrix",
+    name: "components-usability",
+    title: "Please evaluate the ease of use of the different components of the system.",
+    columns: [
+      {
+        "value": 1,
+        "text": "Not<br>useful<br>1"
+      },
+      {
+        "value": 2,
+        "text": "<br><br>2"
+      },
+      {
+        "value": 3,
+        "text": "<br><br>3"
+      },
+      {
+        "value": 4,
+        "text": "<br><br>4"
+      }, {
+        "value": 5,
+        "text": "Very<br>useful<br>5"
+      }
+    ],
+    rows: [
+      {
+        "value": "oblique-tree-view",
+        "text": "*Oblique Tree View*"
+      },
+      {
+        "value": "feature-view",
+        "text": "*Feature View*"
+      },
+      {
+        "value": "projection-view",
+        "text": "*Projection View*"
+      }
+    ],
+    isRequired: true
+  }
+]
+},
+// {
+//   elements: [{
+//     type: "rating",
+//     name: "visualization-usability",
+//     title: "Do you think this visualization easy to use?",
+//     minRateDescription: "Very hard",
+//     maxRateDescription: "Very easy"
+//   }]
+// },
+// {
+//   elements: [{
+//     type: "matrix",
+//     name: "components-usability",
+//     title: "Please evaluate the ease of use of the different components of the system.",
+//     columns: [
+//       {
+//         "value": 1,
+//         "text": "Not<br>useful<br>1"
+//       },
+//       {
+//         "value": 2,
+//         "text": "<br><br>2"
+//       },
+//       {
+//         "value": 3,
+//         "text": "<br><br>3"
+//       },
+//       {
+//         "value": 4,
+//         "text": "<br><br>4"
+//       }, {
+//         "value": 5,
+//         "text": "Very<br>useful<br>5"
+//       }
+//     ],
+//     rows: [
+//       {
+//         "value": "oblique-tree-view",
+//         "text": "*Oblique Tree View*"
+//       },
+//       {
+//         "value": "feature-view",
+//         "text": "*Feature View*"
+//       },
+//       {
+//         "value": "projection-view",
+//         "text": "*Projection View*"
+//       }
+//     ],
+//     isRequired: true
+//   }],
+  // }
+]
 };
 
 function App() {
   const survey = new Model(surveyJson);
   survey.focusFirstQuestionAutomatic = false;
+  const converter = new showdown.Converter();
 
   const submitResults = useCallback((sender) => {
     submitSurveyResult(sender.data).then((res) => {
@@ -73,6 +194,17 @@ function App() {
     clearInterval(timerId);
     submitResults(sender);
   });
+
+  survey.onTextMarkdown.add((survey, options) => {
+    // Convert Markdown to HTML
+    let str = converter.makeHtml(options.text);
+    // Remove root paragraphs <p></p>
+    str = str.substring(3);
+    str = str.substring(0, str.length - 4);
+    // Set HTML markup to render
+    options.html = str;
+  });
+
 
   timerCallback();
   timerId = window.setInterval(() => {
