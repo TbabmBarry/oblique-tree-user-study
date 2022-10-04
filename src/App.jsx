@@ -42,8 +42,8 @@ const surveyJson = {
         "type": "image",
         "name": "tree-diagram",
         "imageLink": treeDiagram,
-        "imageWidth": "500px",
-        "imageHeight": "400px"
+        "imageWidth": "1280px",
+        "imageHeight": "720px"
       },
       {
         type: "text",
