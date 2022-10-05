@@ -32,7 +32,12 @@ const surveyJson = {
       },
       {
         type: "html",
-        html: "<h2>Experiment Setup<br></h2><ul><li>Load Houseshoe Crab Data</li><li>Choose Bivariate Decision Tree</li></ul>"
+        html: "<h2>Experiment Setup<br></h2>\
+              <ul>\
+                <li>Please enter the system (ObliqueTreeVis entrance is provided in the document)</li>\
+                <li>Load Houseshoe Crab Data</li>\
+                <li>Choose Bivariate Decision Tree</li>\
+              </ul>"
       }
     ]
   },
@@ -46,6 +51,10 @@ const surveyJson = {
         "imageHeight": "720px"
       },
       {
+        type: "html",
+        html: "<p>The purpose of the above image is to provide information on the labeled serial number of each node, please answer the questions in the context of the system.</p>"
+      },
+      {
         type: "text",
         name: "section-one-number-of-leaf-nodes",
         title: "List all the leaf nodes of the prediction class Gigas (Answer with the node number in the diagram, using a comma as a separator).",
@@ -54,7 +63,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-one-number-of-leaf-nodes-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -79,7 +88,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-one-selection-of-decision-path-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -99,7 +108,12 @@ const surveyJson = {
       },
       {
         type: "html",
-        html: "<h2>Experiment Setup<br></h2><ul><li>Load Houseshoe Crab Data</li><li>Choose Bivariate Decision Tree</li></ul>"
+        html: "<h2>Experiment Setup<br></h2>\
+              <ul>\
+                <li>Please enter the system (ObliqueTreeVis entrance is provided in the document)</li>\
+                <li>Load Houseshoe Crab Data</li>\
+                <li>Choose Bivariate Decision Tree</li>\
+              </ul>"
       }
     ]
   },
@@ -155,7 +169,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-a-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -182,7 +196,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-a-features-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -205,7 +219,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-a-features-importance-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -270,7 +284,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-b-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -297,7 +311,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-b-features-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
@@ -320,7 +334,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-b-features-importance-confidence",
-        title:"How confident are you that you provided the correct answer?",
+        title:"How confident are you in the correct answer you provided to the question above?",
         isRequired: true,
         choices: [
           "Totally not confident",
