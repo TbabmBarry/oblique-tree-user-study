@@ -53,6 +53,19 @@ const surveyJson = {
       },
       {
         type: "radiogroup",
+        name: "section-one-number-of-leaf-nodes-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
+      {
+        type: "radiogroup",
         name: "section-one-selection-of-decision-path",
         title: "Which of the following decision paths does not have feature weight involved?",
         isRequired: true,
@@ -62,7 +75,20 @@ const surveyJson = {
           "1&rarr;2&rarr;4&rarr;8",
           "1&rarr;3&rarr;6"
         ]
-      }
+      },
+      {
+        type: "radiogroup",
+        name: "section-one-selection-of-decision-path-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
     ]
   },
   {
@@ -127,6 +153,19 @@ const surveyJson = {
         ]
       },
       {
+        type: "radiogroup",
+        name: "section-two-prediction-of-instance-a-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
+      {
         type: "checkbox",
         name: "section-two-prediction-of-instance-a-features",
         title: "For the introduced crab instance A, what features are involved in the prediction?",
@@ -142,6 +181,19 @@ const surveyJson = {
       },
       {
         type: "radiogroup",
+        name: "section-two-prediction-of-instance-a-features-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
+      {
+        type: "radiogroup",
         name: "section-two-prediction-of-instance-a-features-importance",
         title: "For the introduced crab instance A, is feature 'Temperature' more important than feature 'Weight'?",
         isRequired: true,
@@ -149,7 +201,20 @@ const surveyJson = {
           "Yes",
           "No"
         ]
-      }
+      },
+      {
+        type: "radiogroup",
+        name: "section-two-prediction-of-instance-a-features-importance-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
     ]
   },
   {
@@ -203,6 +268,19 @@ const surveyJson = {
         ]
       },
       {
+        type: "radiogroup",
+        name: "section-two-prediction-of-instance-b-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
+      {
         type: "checkbox",
         name: "section-two-prediction-of-instance-b-features",
         title: "For the introduced crab instance B, what features are involved in the prediction?",
@@ -218,6 +296,19 @@ const surveyJson = {
       },
       {
         type: "radiogroup",
+        name: "section-two-prediction-of-instance-b-features-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
+      {
+        type: "radiogroup",
         name: "section-two-prediction-of-instance-b-features-importance",
         title: "For the introduced crab instance B, is feature 'Tail Length' more important than feature 'Weight'?",
         isRequired: true,
@@ -225,7 +316,20 @@ const surveyJson = {
           "Yes",
           "No"
         ]
-      }
+      },
+      {
+        type: "radiogroup",
+        name: "section-two-prediction-of-instance-b-features-importance-confidence",
+        title:"How confident are you that you provided the correct answer?",
+        isRequired: true,
+        choices: [
+          "Totally not confident",
+          "Not confident",
+          "Somewhat confident",
+          "Confident",
+          "Totally confident"
+        ]
+      },
     ]
   },
   {
