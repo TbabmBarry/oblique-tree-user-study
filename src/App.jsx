@@ -112,7 +112,7 @@ const surveyJson = {
               <ul>\
                 <li>Please enter the system (ObliqueTreeVis entrance is provided in the document)</li>\
                 <li>Load Houseshoe Crab Data</li>\
-                <li>Choose Bivariate Decision Tree</li>\
+                <li>Choose Decision Tree</li>\
               </ul>"
       }
     ]
