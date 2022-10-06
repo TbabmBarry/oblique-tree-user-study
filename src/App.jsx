@@ -209,7 +209,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-a-features-importance",
-        title: "For the introduced crab instance A, is feature 'Temperature' more important than feature 'Weight'?",
+        title: "For the introduced crab instance A, is feature 'Temperature' more important than feature 'Altitude'?",
         isRequired: true,
         choices: [
           "Yes",
@@ -324,7 +324,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-b-features-importance",
-        title: "For the introduced crab instance B, is feature 'Tail Length' more important than feature 'Weight'?",
+        title: "For the introduced crab instance B, is feature 'Temperature' more important than feature 'Altitude'?",
         isRequired: true,
         choices: [
           "Yes",
