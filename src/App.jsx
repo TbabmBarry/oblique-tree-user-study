@@ -112,7 +112,7 @@ const surveyJson = {
               <ul>\
                 <li>Please enter the system (ObliqueTreeVis entrance is provided in the document)</li>\
                 <li>Load Houseshoe Crab Data</li>\
-                <li>Choose Decision Tree</li>\
+                <li>Choose Bivariate Decision Tree</li>\
               </ul>"
       }
     ]
@@ -209,7 +209,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-a-features-importance",
-        title: "For the introduced crab instance A, is feature 'Temperature' more important than feature 'Altitude'?",
+        title: "For the introduced crab instance A, is feature 'Temperature' more important than feature 'Weight'?",
         isRequired: true,
         choices: [
           "Yes",
@@ -324,7 +324,7 @@ const surveyJson = {
       {
         type: "radiogroup",
         name: "section-two-prediction-of-instance-b-features-importance",
-        title: "For the introduced crab instance B, is feature 'Temperature' more important than feature 'Altitude'?",
+        title: "For the introduced crab instance B, is feature 'Temperature' more important than feature 'Tail Length'?",
         isRequired: true,
         choices: [
           "Yes",
